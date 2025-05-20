@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}Welcome!{% endblock %}</title>
+    </head>
+<body
+<h2>Produits</h2>
+<table id="productsList">
+</table>
+
+</table>
+
+<script>
+    console.log("TestApi.js");
+    async function getData() {
+        const url = "http://163.172.44.107/pter/my_project_directory/public/index.php/api/test";
+        try {
+            const response = await fetch(url);
+            console.log(response.status);
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+            }
+
+            const json = await response.json();
+            console.log(json);
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+    
+
+    console.log("TestApi.js");
+    async function getProducts() {
+        const url = "http://163.172.44.107/pter/my_project_directory/public/index.php/product/api/products";
+        try {
+            const response = await fetch(url);
+            console.log(response.status);
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+            }
+
+            const products = await response.json();
+            //console.log(products);
+            var tb = document.getElementById("productsList");
+
+            products.forEach((product) => {
+                var tr = document.createElement("tr");
+                tb.append(tr);
+                var td = document.createElement("td");
+                var td2 = document.createElement("td");
+                tr.append(td);
+                td.textContent=product.id;
+                tr.append(td2);
+                td2.textContent=product.description;
+                //console.log(product.description);
+            })
+            
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+    getData();
+    getProducts();
+    
+
+</script>
+</body>
+</html>
