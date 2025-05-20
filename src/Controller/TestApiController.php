@@ -1,5 +1,5 @@
 <?php
-// src/Controller/LuckyController.php
+// src/Controller/TestApiController.php
 namespace App\Controller;
 
 //use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +16,7 @@ class TestApiController
             $numbers[]=rand(1,100);
         }
         return new JsonResponse(
-            $numbers,200
+            $numbers,201  
         );
     }
 }
